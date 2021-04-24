@@ -1,0 +1,175 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Evaluate Semantics &#8212; quell-spec  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script>
+    <script type="text/javascript" src="../_static/katex_autorenderer.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Implement Guide" href="implement_guide.html" />
+    <link rel="prev" title="Module Semantics" href="module_semantics.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="evaluate-semantics">
+<h1>Evaluate Semantics<a class="headerlink" href="#evaluate-semantics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="desugaring">
+<h2>Desugaring<a class="headerlink" href="#desugaring" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="do-block">
+<h3>Do Block<a class="headerlink" href="#do-block" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>do { e }                = e
+do { e ; stmts }        = e &gt;&gt; do { stmts }
+do { p &lt;- e ; stmts }   = e &gt;&gt;= \p -&gt; do { stmts }
+do { let decls; stmts } = let decls in do { stmts }
+</pre></div>
+</div>
+</div>
+<div class="section" id="integer-literal">
+<h3>Integer Literal<a class="headerlink" href="#integer-literal" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fromIntegerLiteral :: IntegerLiteral -&gt; a
+</pre></div>
+</div>
+<p>Primitive:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Integer.fromIntegerLiteral :: IntegerLiteral -&gt; Integer
+Int.fromIntegerLiteral :: IntegerLiteral -&gt; Int
+Word.fromIntegerLiteral :: IntegerLiteral -&gt; Word
+Byte.fromIntegerLiteral :: IntegerLiteral -&gt; Byte
+Int8.fromIntegerLiteral :: IntegerLiteral -&gt; Int8
+Int16.fromIntegerLiteral :: IntegerLiteral -&gt; Int16
+Int32.fromIntegerLiteral :: IntegerLiteral -&gt; Int32
+Int64.fromIntegerLiteral :: IntegerLiteral -&gt; Int64
+Word8.fromIntegerLiteral :: IntegerLiteral -&gt; Word8
+Word16.fromIntegerLiteral :: IntegerLiteral -&gt; Word16
+Word32.fromIntegerLiteral :: IntegerLiteral -&gt; Word32
+Word64.fromIntegerLiteral :: IntegerLiteral -&gt; Word64
+Rational.fromIntegerLiteral :: IntegerLiteral -&gt; Rational
+Float.fromIntegerLiteral :: IntegerLiteral -&gt; Float
+Double.fromIntegerLiteral :: IntegerLiteral -&gt; Double
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Int8.1 == Int8.(fromIntegerLiteral ...) -- 1 of Int8
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">quell-spec</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=mizunashi-mana&repo=quell-experimental&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="syntax.html">Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="typing_semantics.html">Typing Semantics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module_semantics.html">Module Semantics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Evaluate Semantics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#desugaring">Desugaring</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="implement_guide.html">Implement Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knowledge.html">Knowledge</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="module_semantics.html" title="previous chapter">Module Semantics</a></li>
+      <li>Next: <a href="implement_guide.html" title="next chapter">Implement Guide</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Mizunashi Mana.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/article/evaluate_semantics.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/mizunashi-mana/quell-experimental" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
