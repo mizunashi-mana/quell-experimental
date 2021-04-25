@@ -386,11 +386,11 @@
 </pre>
 <pre>
 <strong id="grammar-token-decltype">decltype   </strong> ::=  declcon bind_var*
-                 bind_var declconop bind_var
+                 simple_bind_var declconop simple_bind_var
 <strong id="grammar-token-impltype">impltype   </strong> ::=  con_qualified type_qualified*
                  type_qualified conop type_qualified
 <strong id="grammar-token-declvarexpr">declvarexpr</strong> ::=  declvar bind_var*
-                 bind_var declop bind_var
+                 simple_bind_var declop simple_bind_var
 </pre>
 <pre>
 <strong id="grammar-token-type">type                  </strong> ::=  &quot;\\/&quot; bind_var* &quot;=&gt;&quot; type
@@ -530,8 +530,8 @@
                    &quot;{{&quot; do_stmt_items &quot;}}&quot;
                    '{' do_stmt_items '}'
 <strong id="grammar-token-do-stmt-items">do_stmt_items</strong> ::=  lsemis? (do_stmt_item lsemis)* do_yield_item lsemis?
-<strong id="grammar-token-do-stmt-item">do_stmt_item </strong> ::=  pat &quot;&lt;-&quot; expr
-                   pat &quot;=&quot; expr
+<strong id="grammar-token-do-stmt-item">do_stmt_item </strong> ::=  pat &quot;&lt;-&quot; expr (&quot;#where&quot; val_decl_where_body)?
+                   pat &quot;=&quot; expr (&quot;#where&quot; val_decl_where_body)?
                    &quot;#letrec&quot; let_binds
 <strong id="grammar-token-do-yield-item">do_yield_item</strong> ::=  &quot;#yield&quot; expr
 </pre>
