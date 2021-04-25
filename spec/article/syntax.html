@@ -347,9 +347,9 @@
                 val_decl
 </pre>
 <pre>
-<strong id="grammar-token-typesig-decl">typesig_decl</strong> ::=  &quot;#type&quot; con &quot;:&quot; type
-<strong id="grammar-token-valsig-decl">valsig_decl </strong> ::=  var &quot;:&quot; type
-<strong id="grammar-token-consig-decl">consig_decl </strong> ::=  con &quot;:&quot; type
+<strong id="grammar-token-typesig-decl">typesig_decl</strong> ::=  &quot;#type&quot; declcon &quot;:&quot; type
+<strong id="grammar-token-valsig-decl">valsig_decl </strong> ::=  declvar &quot;:&quot; type
+<strong id="grammar-token-consig-decl">consig_decl </strong> ::=  declcon &quot;:&quot; type
 </pre>
 <pre>
 <strong id="grammar-token-type-decl">type_decl            </strong> ::=  &quot;#type&quot; decltype &quot;=&quot; type (&quot;where&quot; type_decl_where_body)?
@@ -387,7 +387,7 @@
 <pre>
 <strong id="grammar-token-decltype">decltype   </strong> ::=  declcon bind_var*
                  bind_var declconop bind_var
-<strong id="grammar-token-impltype">impltype   </strong> ::=  con type_qualified*
+<strong id="grammar-token-impltype">impltype   </strong> ::=  con_qualified type_qualified*
                  type_qualified conop type_qualified
 <strong id="grammar-token-declvarexpr">declvarexpr</strong> ::=  declvar bind_var*
                  bind_var declop bind_var
@@ -419,7 +419,7 @@
 <strong id="grammar-token-type-tuple-items">type_tuple_items      </strong> ::=  (type &quot;,&quot;)+ type &quot;,&quot;?
 <strong id="grammar-token-type-array-items">type_array_items      </strong> ::=  (type &quot;,&quot;)* type?
 <strong id="grammar-token-type-simplrecord-items">type_simplrecord_items</strong> ::=  (type_simplrecord_item &quot;,&quot;)* type_simplrecord_item?
-<strong id="grammar-token-type-simplrecord-item">type_simplrecord_item </strong> ::=  var &quot;:&quot; type
+<strong id="grammar-token-type-simplrecord-item">type_simplrecord_item </strong> ::=  declvar &quot;:&quot; type
 </pre>
 <pre>
 <strong id="grammar-token-sig-item">sig_item</strong> ::=  typesig_decl
@@ -461,19 +461,20 @@
 <strong id="grammar-token-expr-tuple-items">expr_tuple_items      </strong> ::=  (expr &quot;,&quot;)+ expr &quot;,&quot;?
 <strong id="grammar-token-expr-array-items">expr_array_items      </strong> ::=  (expr &quot;,&quot;)* expr?
 <strong id="grammar-token-expr-simplrecord-items">expr_simplrecord_items</strong> ::=  (expr_simplrecord_item &quot;,&quot;)* expr_simplrecord_item?
-<strong id="grammar-token-expr-simplrecord-item">expr_simplrecord_item </strong> ::=  var &quot;=&quot; expr
+<strong id="grammar-token-expr-simplrecord-item">expr_simplrecord_item </strong> ::=  declvar &quot;=&quot; expr
 </pre>
 <pre>
 <strong id="grammar-token-pat">pat                  </strong> ::=  pat_unit &quot;:&quot; type
                            pat_unit
 <strong id="grammar-token-pat-unit">pat_unit             </strong> ::=  pat_infix (&quot;|&quot; pat_infix)*
-<strong id="grammar-token-pat-infix">pat_infix            </strong> ::=  pat_apps (qual_conop  pat_apps)*
-<strong id="grammar-token-pat-apps">pat_apps             </strong> ::=  pat_qualified pat_app*
+<strong id="grammar-token-pat-infix">pat_infix            </strong> ::=  pat_univ_apps (conop_qualified pat_univ_apps)*
+<strong id="grammar-token-pat-univ-apps">pat_univ_apps        </strong> ::=  pat_univ_apps &quot;&#64;&quot; type_qualified
+                           pat_apps
+<strong id="grammar-token-pat-apps">pat_apps             </strong> ::=  con_qualified pat_app*
 <strong id="grammar-token-pat-app">pat_app              </strong> ::=  pat_qualified
-                           &quot;&#64;&quot; pat_qualified
+                           &quot;&#64;&quot; type_qualified
 <strong id="grammar-token-pat-qualified">pat_qualified        </strong> ::=  pat_atomic
 <strong id="grammar-token-pat-atomic">pat_atomic           </strong> ::=  &quot;(&quot; pat &quot;)&quot;
-                           con
                            var
                            pat_literal
 <strong id="grammar-token-pat-literal">pat_literal          </strong> ::=  literal
@@ -483,7 +484,7 @@
 <strong id="grammar-token-pat-tuple-items">pat_tuple_items      </strong> ::=  (pat &quot;,&quot;)+ pat &quot;,&quot;?
 <strong id="grammar-token-pat-array-items">pat_array_items      </strong> ::=  (pat &quot;,&quot;)* pat?
 <strong id="grammar-token-pat-simplrecord-items">pat_simplrecord_items</strong> ::=  (pat_simplrecord_item &quot;,&quot;)* pat_simplrecord_item?
-<strong id="grammar-token-pat-simplrecord-item">pat_simplrecord_item </strong> ::=  var &quot;=&quot; pat
+<strong id="grammar-token-pat-simplrecord-item">pat_simplrecord_item </strong> ::=  declvar &quot;=&quot; pat
 </pre>
 <pre>
 <strong id="grammar-token-let-body">let_body      </strong> ::=  let_binds &quot;in&quot; expr
@@ -535,6 +536,8 @@
                      simple_bind_var
 <strong id="grammar-token-simple-bind-var">simple_bind_var</strong> ::=  var_id_ext
                      &quot;(&quot; var_id_ext &quot;:&quot; type &quot;)&quot;
+<strong id="grammar-token-con-qualified">con_qualified  </strong> ::=  con
+<strong id="grammar-token-conop-qualified">conop_qualified</strong> ::=  conop
 <strong id="grammar-token-con">con            </strong> ::=  con_id_ext
                      &quot;(&quot; con_sym_ext &quot;)&quot;
 <strong id="grammar-token-conop">conop          </strong> ::=  con_sym_ext
