@@ -548,35 +548,39 @@
 <strong id="grammar-token-do-yield-item">do_yield_item</strong> ::=  &quot;#yield&quot; expr
 </pre>
 <pre>
-<strong id="grammar-token-bind-var">bind_var       </strong> ::=  &quot;&#64;&quot; simple_bind_var
-                     &quot;#&#64;&quot; block_bind_var
-                     simple_bind_var
-                     &quot;##&quot; block_bind_var
-<strong id="grammar-token-simple-bind-var">simple_bind_var</strong> ::=  var_id_ext
-                     &quot;(&quot; var_id_ext &quot;:&quot; type &quot;)&quot;
-<strong id="grammar-token-block-bind-var">block_bind_var </strong> ::=  var_id_ext
-                     var_id_ext &quot;:&quot; type
-<strong id="grammar-token-con-qualified">con_qualified  </strong> ::=  con
-<strong id="grammar-token-conop-qualified">conop_qualified</strong> ::=  conop
-<strong id="grammar-token-con">con            </strong> ::=  con_id_ext
-                     &quot;(&quot; con_sym_ext &quot;)&quot;
-<strong id="grammar-token-conop">conop          </strong> ::=  con_sym_ext
-                     &quot;`&quot; con_sym_ext &quot;`&quot;
-                     &quot;`&quot; con_id_ext &quot;`&quot;
-<strong id="grammar-token-var">var            </strong> ::=  var_id_ext
-                     &quot;(&quot; var_sym_ext &quot;)&quot;
-<strong id="grammar-token-op">op             </strong> ::=  var_sym_ext
-                     &quot;`&quot; var_sym_ext &quot;`&quot;
-                     &quot;`&quot; var_id_ext &quot;`&quot;
-<strong id="grammar-token-sym-ext">sym_ext        </strong> ::=  con_sym_ext
-                     var_sym_ext
-<strong id="grammar-token-con-id-ext">con_id_ext     </strong> ::=  con_id
-                     &quot;(&quot; &quot;)&quot;
-<strong id="grammar-token-con-sym-ext">con_sym_ext    </strong> ::=  con_sym
-                     &quot;-&gt;&quot;
-<strong id="grammar-token-var-id-ext">var_id_ext     </strong> ::=  var_id
-                     &quot;_&quot;
-<strong id="grammar-token-var-sym-ext">var_sym_ext    </strong> ::=  var_sym
+<strong id="grammar-token-bind-var">bind_var            </strong> ::=  &quot;&#64;&quot; simple_bind_var
+                          &quot;#&#64;&quot; block_bind_var
+                          simple_bind_var
+                          &quot;##&quot; block_bind_var
+<strong id="grammar-token-simple-bind-var">simple_bind_var     </strong> ::=  var_id_ext
+                          &quot;(&quot; var_id_ext &quot;:&quot; type &quot;)&quot;
+<strong id="grammar-token-block-bind-var">block_bind_var      </strong> ::=  &quot;{&quot; block_bind_var_items &quot;}&quot;
+                          &quot;{{&quot; block_bind_var_items &quot;}}&quot;
+                          '{' block_bind_var_items '}'
+<strong id="grammar-token-block-bind-var-items">block_bind_var_items</strong> ::=  lsemis? block_bind_var_item lsemis?
+<strong id="grammar-token-block-bind-var-item">block_bind_var_item </strong> ::=  var_id_ext
+                          var_id_ext &quot;:&quot; type
+<strong id="grammar-token-con-qualified">con_qualified       </strong> ::=  con
+<strong id="grammar-token-conop-qualified">conop_qualified     </strong> ::=  conop
+<strong id="grammar-token-con">con                 </strong> ::=  con_id_ext
+                          &quot;(&quot; con_sym_ext &quot;)&quot;
+<strong id="grammar-token-conop">conop               </strong> ::=  con_sym_ext
+                          &quot;`&quot; con_sym_ext &quot;`&quot;
+                          &quot;`&quot; con_id_ext &quot;`&quot;
+<strong id="grammar-token-var">var                 </strong> ::=  var_id_ext
+                          &quot;(&quot; var_sym_ext &quot;)&quot;
+<strong id="grammar-token-op">op                  </strong> ::=  var_sym_ext
+                          &quot;`&quot; var_sym_ext &quot;`&quot;
+                          &quot;`&quot; var_id_ext &quot;`&quot;
+<strong id="grammar-token-sym-ext">sym_ext             </strong> ::=  con_sym_ext
+                          var_sym_ext
+<strong id="grammar-token-con-id-ext">con_id_ext          </strong> ::=  con_id
+                          &quot;(&quot; &quot;)&quot;
+<strong id="grammar-token-con-sym-ext">con_sym_ext         </strong> ::=  con_sym
+                          &quot;-&gt;&quot;
+<strong id="grammar-token-var-id-ext">var_id_ext          </strong> ::=  var_id
+                          &quot;_&quot;
+<strong id="grammar-token-var-sym-ext">var_sym_ext         </strong> ::=  var_sym
 </pre>
 <pre>
 <strong id="grammar-token-declcon">declcon  </strong> ::=  con_id
