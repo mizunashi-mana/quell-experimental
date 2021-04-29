@@ -136,6 +136,7 @@
                   &quot;]&quot;
                   &quot;`&quot; -- ` for syntax highlighting issue
                   &quot;;&quot;
+                  &quot;##&quot; | &quot;﹟&quot;
                   &quot;#&#64;&quot;
 <strong id="grammar-token-brace">brace       </strong> ::=  &quot;{{&quot; | &quot;}}&quot; : &quot;❴&quot; | &quot;❵&quot;
                   &quot;{&quot; | &quot;}&quot;
@@ -268,7 +269,7 @@
                         &quot;\p{General_Category=Other_Number}&quot;
                         &quot;\p{General_Category=Format}&quot;&lt;whitechar&gt;
                         &quot;'&quot;
-<strong id="grammar-token-other-special">other_special     </strong> ::=  &quot;#&quot; | &quot;\&quot;&quot; | &quot;{&quot; | &quot;}&quot; | &quot;⦃&quot; | &quot;⦄&quot; | &quot;❴&quot; | &quot;❵&quot;
+<strong id="grammar-token-other-special">other_special     </strong> ::=  &quot;#&quot; | &quot;﹟&quot; | &quot;\&quot;&quot; | &quot;{&quot; | &quot;}&quot; | &quot;⦃&quot; | &quot;⦄&quot; | &quot;❴&quot; | &quot;❵&quot;
 <strong id="grammar-token-other-graphic">other_graphic     </strong> ::=  other_graphic_char&lt;symbolchar | special | other_special&gt;
 <strong id="grammar-token-other-graphic-char">other_graphic_char</strong> ::=  &quot;\p{General_Category=Punctuation}&quot;
 </pre>
@@ -329,6 +330,7 @@
 <strong id="id7">"\\" </strong> ::=  &quot;\\&quot; | &quot;λ&quot;
 <strong id="id8">"{{" </strong> ::=  &quot;{{&quot; | &quot;❴&quot;
 <strong id="id9">"}}" </strong> ::=  &quot;}}&quot; | &quot;❵&quot;
+<strong id="id10">"##" </strong> ::=  &quot;##&quot; | &quot;﹟&quot;
 </pre>
 </div>
 <div class="section" id="grammar">
@@ -372,11 +374,12 @@
                          consig_decl
                          type_decl
 <strong id="grammar-token-alg-data-type">alg_data_type      </strong> ::=  &quot;(&quot; alg_data_type_items &quot;)&quot;
+                         &quot;(&quot; &quot;|&quot;* &quot;)&quot;
                          alg_data_type_items
 <strong id="grammar-token-alg-data-type-items">alg_data_type_items</strong> ::=  &quot;|&quot;* (impltype &quot;|&quot;+)* impltype &quot;|&quot;*
 </pre>
 <pre>
-<strong id="grammar-token-val-decl">val_decl            </strong> ::=  declvarexpr &quot;=&quot; expr (&quot;#where&quot; val_decl_where_body)?
+<strong id="grammar-token-val-decl">val_decl            </strong> ::=  declvarexpr (&quot;:&quot; type)? &quot;=&quot; expr (&quot;#where&quot; val_decl_where_body)?
 <strong id="grammar-token-val-bind">val_bind            </strong> ::=  pat &quot;=&quot; expr (&quot;#where&quot; val_decl_where_body)?
 <strong id="grammar-token-val-decl-where-body">val_decl_where_body </strong> ::=  &quot;{&quot; val_decl_where_items &quot;}&quot;
                           &quot;{{&quot; val_decl_where_items &quot;}}&quot;
@@ -406,8 +409,11 @@
                             type_qualified
 <strong id="grammar-token-type-apps">type_apps             </strong> ::=  type_qualified type_app*
 <strong id="grammar-token-type-app">type_app              </strong> ::=  &quot;&#64;&quot; type_qualified
+                            &quot;#&#64;&quot; type_block_body
                             type_qualified
-<strong id="grammar-token-type-qualified">type_qualified        </strong> ::=  type_atomic
+<strong id="grammar-token-type-qualified">type_qualified        </strong> ::=  type_block
+<strong id="grammar-token-type-block">type_block            </strong> ::=  &quot;##&quot; type_block_body
+                            type_atomic
 <strong id="grammar-token-type-atomic">type_atomic           </strong> ::=  &quot;(&quot; type (&quot;:&quot; type)? &quot;)&quot;
                             con
                             var
@@ -416,6 +422,10 @@
                             &quot;(&quot; type_tuple_items &quot;)&quot;
                             &quot;[&quot; type_array_items &quot;]&quot;
                             &quot;{&quot; type_simplrecord_items &quot;}&quot;
+<strong id="grammar-token-type-block-body">type_block_body       </strong> ::=  &quot;{&quot; type_block_item &quot;}&quot;
+                            &quot;{{&quot; type_block_item &quot;}}&quot;
+                            '{' type_block_item '}'
+<strong id="grammar-token-type-block-item">type_block_item       </strong> ::=  lsemis? type lsemis?
 <strong id="grammar-token-type-tuple-items">type_tuple_items      </strong> ::=  (type &quot;,&quot;)+ type &quot;,&quot;?
 <strong id="grammar-token-type-array-items">type_array_items      </strong> ::=  (type &quot;,&quot;)* type?
 <strong id="grammar-token-type-simplrecord-items">type_simplrecord_items</strong> ::=  (type_simplrecord_item &quot;,&quot;)* type_simplrecord_item?
@@ -438,6 +448,7 @@
 <strong id="grammar-token-expr-apps">expr_apps             </strong> ::=  expr_qualified expr_app*
 <strong id="grammar-token-expr-app">expr_app              </strong> ::=  expr_qualified
                             &quot;&#64;&quot; type_qualified
+                            &quot;#&#64;&quot; type_block_body
 <strong id="grammar-token-expr-qualified">expr_qualified        </strong> ::=  expr_block
 <strong id="grammar-token-expr-block">expr_block            </strong> ::=  &quot;\\&quot; &quot;#case&quot; case_alt_body
                             &quot;\\&quot; lambda_body
@@ -445,7 +456,7 @@
                             &quot;#let&quot; let_body
                             &quot;#case&quot; (expr &quot;,&quot;)* expr? &quot;#of&quot; case_alt_body
                             &quot;#do&quot; do_body
-                            &quot;#&#64;&quot; expr_block_body
+                            &quot;##&quot; expr_block_body
                             expr_atomic
 <strong id="grammar-token-expr-atomic">expr_atomic           </strong> ::=  &quot;(&quot; expr &quot;)&quot;
                             con
@@ -472,13 +483,14 @@
                            pat_unit
 <strong id="grammar-token-pat-unit">pat_unit             </strong> ::=  pat_infix (&quot;|&quot; pat_infix)*
 <strong id="grammar-token-pat-infix">pat_infix            </strong> ::=  pat_univ_apps (conop_qualified pat_univ_apps)*
-<strong id="grammar-token-pat-univ-apps">pat_univ_apps        </strong> ::=  pat_univ_apps &quot;&#64;&quot; type_qualified
-                           pat_apps
+<strong id="grammar-token-pat-univ-apps">pat_univ_apps        </strong> ::=  pat_apps pat_univ_app*
 <strong id="grammar-token-pat-apps">pat_apps             </strong> ::=  con_qualified pat_app*
+<strong id="grammar-token-pat-univ-app">pat_univ_app         </strong> ::=  &quot;&#64;&quot; type_qualified
+                           &quot;#&#64;&quot; type_block_body
 <strong id="grammar-token-pat-app">pat_app              </strong> ::=  pat_qualified
-                           &quot;&#64;&quot; type_qualified
+                           pat_univ_app
 <strong id="grammar-token-pat-qualified">pat_qualified        </strong> ::=  pat_block
-<strong id="grammar-token-pat-block">pat_block            </strong> ::=  &quot;#&#64;&quot; pat_block_body
+<strong id="grammar-token-pat-block">pat_block            </strong> ::=  &quot;##&quot; pat_block_body
                            pat_atomic
 <strong id="grammar-token-pat-atomic">pat_atomic           </strong> ::=  &quot;(&quot; pat &quot;)&quot;
                            var
@@ -512,8 +524,8 @@
                        &quot;{{&quot; case_alt_items &quot;}}&quot;
                        '{' case_alt_items '}'
 <strong id="grammar-token-case-alt-items">case_alt_items   </strong> ::=  lsemis? (case_alt_item lsemis)* case_alt_item?
-<strong id="grammar-token-case-alt-item">case_alt_item    </strong> ::=  (pat &quot;,&quot;)* pat? guarded_alt
-<strong id="grammar-token-guarded-alt">guarded_alt      </strong> ::=  &quot;-&gt;&quot; expr
+<strong id="grammar-token-case-alt-item">case_alt_item    </strong> ::=  (pat &quot;,&quot;)* pat? guarded_alts
+<strong id="grammar-token-guarded-alts">guarded_alts     </strong> ::=  &quot;-&gt;&quot; expr
                        &quot;#when&quot; guarded_alt_body
 <strong id="grammar-token-guarded-alt-body">guarded_alt_body </strong> ::=  &quot;{&quot; guarded_alt_items &quot;}&quot;
                        &quot;{{&quot; guarded_alt_items &quot;}}&quot;
@@ -523,7 +535,7 @@
 <strong id="grammar-token-guard-qual">guard_qual       </strong> ::=  expr
 </pre>
 <pre>
-<strong id="grammar-token-lambda-body">lambda_body</strong> ::=  pat_atomic* guarded_alt
+<strong id="grammar-token-lambda-body">lambda_body</strong> ::=  pat_atomic* guarded_alts
 </pre>
 <pre>
 <strong id="grammar-token-do-body">do_body      </strong> ::=  &quot;{&quot; do_stmt_items &quot;}&quot;
@@ -537,9 +549,13 @@
 </pre>
 <pre>
 <strong id="grammar-token-bind-var">bind_var       </strong> ::=  &quot;&#64;&quot; simple_bind_var
+                     &quot;#&#64;&quot; block_bind_var
                      simple_bind_var
+                     &quot;##&quot; block_bind_var
 <strong id="grammar-token-simple-bind-var">simple_bind_var</strong> ::=  var_id_ext
                      &quot;(&quot; var_id_ext &quot;:&quot; type &quot;)&quot;
+<strong id="grammar-token-block-bind-var">block_bind_var </strong> ::=  var_id_ext
+                     var_id_ext &quot;:&quot; type
 <strong id="grammar-token-con-qualified">con_qualified  </strong> ::=  con
 <strong id="grammar-token-conop-qualified">conop_qualified</strong> ::=  conop
 <strong id="grammar-token-con">con            </strong> ::=  con_id_ext
@@ -612,6 +628,7 @@
     <span class="s">&quot;#of&quot;</span>       <span class="ow">-&gt;</span> <span class="kt">True</span>
     <span class="s">&quot;#when&quot;</span>     <span class="ow">-&gt;</span> <span class="kt">True</span>
     <span class="s">&quot;#where&quot;</span>    <span class="ow">-&gt;</span> <span class="kt">True</span>
+    <span class="s">&quot;##&quot;</span>        <span class="ow">-&gt;</span> <span class="kt">True</span>
     <span class="s">&quot;#@&quot;</span>        <span class="ow">-&gt;</span> <span class="kt">True</span>
     <span class="kr">_</span>           <span class="ow">-&gt;</span> <span class="kt">False</span>
 
