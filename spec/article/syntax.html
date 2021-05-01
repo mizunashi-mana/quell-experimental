@@ -391,7 +391,7 @@
 <strong id="grammar-token-decltype">decltype   </strong> ::=  declcon bind_var*
                  simple_bind_var declconop simple_bind_var
 <strong id="grammar-token-impltype">impltype   </strong> ::=  con_qualified type_qualified*
-                 type_qualified conop type_qualified
+                 type_qualified conop_qualified type_qualified
 <strong id="grammar-token-declvarexpr">declvarexpr</strong> ::=  declvar bind_var*
                  simple_bind_var declop simple_bind_var
 </pre>
@@ -482,12 +482,13 @@
 <strong id="grammar-token-pat">pat                  </strong> ::=  pat_unit &quot;:&quot; type
                            pat_unit
 <strong id="grammar-token-pat-unit">pat_unit             </strong> ::=  pat_infix (&quot;|&quot; pat_infix)*
-<strong id="grammar-token-pat-infix">pat_infix            </strong> ::=  pat_univ_apps (conop_qualified pat_univ_apps)*
-<strong id="grammar-token-pat-univ-apps">pat_univ_apps        </strong> ::=  pat_apps pat_univ_app*
+<strong id="grammar-token-pat-infix">pat_infix            </strong> ::=  pat_apps (conop_qualified pat_apps)*
 <strong id="grammar-token-pat-apps">pat_apps             </strong> ::=  con_qualified pat_app*
+                           pat_qualified pat_univ_app*
 <strong id="grammar-token-pat-univ-app">pat_univ_app         </strong> ::=  &quot;&#64;&quot; type_qualified
                            &quot;#&#64;&quot; type_block_body
 <strong id="grammar-token-pat-app">pat_app              </strong> ::=  pat_qualified
+                           con_qualified
                            pat_univ_app
 <strong id="grammar-token-pat-qualified">pat_qualified        </strong> ::=  pat_block
 <strong id="grammar-token-pat-block">pat_block            </strong> ::=  &quot;##&quot; pat_block_body
@@ -509,7 +510,7 @@
 <strong id="grammar-token-pat-simplrecord-item">pat_simplrecord_item </strong> ::=  declvar &quot;=&quot; pat
 </pre>
 <pre>
-<strong id="grammar-token-let-body">let_body      </strong> ::=  let_binds &quot;in&quot; expr
+<strong id="grammar-token-let-body">let_body      </strong> ::=  let_binds &quot;#in&quot; expr
 <strong id="grammar-token-let-binds">let_binds     </strong> ::=  &quot;{&quot; let_bind_items &quot;}&quot;
                     &quot;{{&quot; let_bind_items &quot;}}&quot;
                     '{' let_bind_items '}'
