@@ -79,8 +79,8 @@
                      con_sym
 </pre>
 <pre>
-<strong id="grammar-token-var-id">var_id </strong> ::=  (small (small | large | digit | other)*)&lt;reserved_id&gt;
-<strong id="grammar-token-con-id">con_id </strong> ::=  (large (small | large | digit | other)*)&lt;reserved_id&gt;
+<strong id="grammar-token-var-id">var_id </strong> ::=  (small (small | large | digit | other)*)
+<strong id="grammar-token-con-id">con_id </strong> ::=  (large (small | large | digit | other)*)
 <strong id="grammar-token-var-sym">var_sym</strong> ::=  (symbol&lt;&quot;:&quot;&gt; (symbol | other)*)&lt;reserved_sym&gt;
 <strong id="grammar-token-con-sym">con_sym</strong> ::=  (&quot;:&quot; (symbol | other)*)&lt;reserved_sym&gt;
 </pre>
@@ -115,8 +115,6 @@
                   &quot;#Self&quot;
 <strong id="grammar-token-reserved-sym">reserved_sym</strong> ::=  &quot;_&quot;
                   &quot;!&quot;
-                  &quot;..&quot; | &quot;…&quot;
-                  &quot;.&quot;
                   &quot;-&gt;&quot; | &quot;→&quot;
                   &quot;&lt;-&quot; | &quot;←&quot;
                   &quot;=&gt;&quot; | &quot;⇒&quot;
@@ -138,6 +136,8 @@
                   &quot;;&quot;
                   &quot;##&quot; | &quot;﹟&quot;
                   &quot;#&#64;&quot;
+                  &quot;..&quot; | &quot;…&quot;
+                  &quot;.&quot;
 <strong id="grammar-token-brace">brace       </strong> ::=  &quot;{{&quot; | &quot;}}&quot; : &quot;❴&quot; | &quot;❵&quot;
                   &quot;{&quot; | &quot;}&quot;
 </pre>
