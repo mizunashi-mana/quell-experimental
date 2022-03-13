@@ -1,24 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Knowledge &#8212; quell-spec  documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/katex-math.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script>
-    <script type="text/javascript" src="../_static/katex_autorenderer.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"></script>
+    <script src="../_static/katex_autorenderer.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="Implement Guide" href="implement_guide.html" />
@@ -38,71 +37,71 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="knowledge">
+  <section id="knowledge">
 <h1>Knowledge<a class="headerlink" href="#knowledge" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="foundations-inspired-by">
+<section id="foundations-inspired-by">
 <h2>Foundations &amp; Inspired By<a class="headerlink" href="#foundations-inspired-by" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="core-language">
+<section id="core-language">
 <h3>Core Language<a class="headerlink" href="#core-language" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Weirich, S., Hsu, J., &amp; Eisenberg, R. A. (2013). System FC with explicit kind equality. Proceedings of the 18th ACM SIGPLAN International Conference on Functional Programming, 275–286. <a class="reference external" href="https://doi.org/10.1145/2500365.2500599">https://doi.org/10.1145/2500365.2500599</a></li>
-<li>Levy, P. B. (2001). Call-By-Push-Value (Queen Mary and Westfield College, University of London). Retrieved from <a class="reference external" href="https://www.cs.bham.ac.uk/~pbl/papers/thesisqmwphd.pdf">https://www.cs.bham.ac.uk/~pbl/papers/thesisqmwphd.pdf</a></li>
-<li>Benton, N., Hughes, J., &amp; Moggi, E. (2002). Monads and Effects. Applied Semantics, 2395, 923–952. <a class="reference external" href="https://doi.org/10.1007/3-540-45699-6_2">https://doi.org/10.1007/3-540-45699-6_2</a></li>
-<li>Maurer, L., Downen, P., Ariola, Z. M., &amp; Peyton Jones, S. (2017). Compiling without continuations. ACM SIGPLAN Notices, 52(6), 482–494. <a class="reference external" href="https://doi.org/10.1145/3140587.3062380">https://doi.org/10.1145/3140587.3062380</a></li>
-<li>Downen, P. (2017). Sequent Calculus: A Logic and a Language for Computation and Duality (University of Oregon). Retrieved from <a class="reference external" href="https://ix.cs.uoregon.edu/~pdownen/publications/downen_phd.pdf">https://ix.cs.uoregon.edu/~pdownen/publications/downen_phd.pdf</a></li>
-<li>Downen, P., &amp; Ariola, Z. M. (2020). Compiling With Classical Connectives. Logical Methods in Computer Science, 16(3), 1–13. <a class="reference external" href="https://doi.org/10.23638/LMCS-16(3:13)2020">https://doi.org/10.23638/LMCS-16(3:13)2020</a></li>
-<li>Selinger, P. (2001). Control categories and duality: on the categorical semantics of the lambda-mu calculus. Mathematical Structures in Computer Science, 11(2), S096012950000311X. <a class="reference external" href="https://doi.org/10.1017/S096012950000311X">https://doi.org/10.1017/S096012950000311X</a></li>
+<li><p>Weirich, S., Hsu, J., &amp; Eisenberg, R. A. (2013). System FC with explicit kind equality. Proceedings of the 18th ACM SIGPLAN International Conference on Functional Programming, 275–286. <a class="reference external" href="https://doi.org/10.1145/2500365.2500599">https://doi.org/10.1145/2500365.2500599</a></p></li>
+<li><p>Levy, P. B. (2001). Call-By-Push-Value (Queen Mary and Westfield College, University of London). Retrieved from <a class="reference external" href="https://www.cs.bham.ac.uk/~pbl/papers/thesisqmwphd.pdf">https://www.cs.bham.ac.uk/~pbl/papers/thesisqmwphd.pdf</a></p></li>
+<li><p>Benton, N., Hughes, J., &amp; Moggi, E. (2002). Monads and Effects. Applied Semantics, 2395, 923–952. <a class="reference external" href="https://doi.org/10.1007/3-540-45699-6_2">https://doi.org/10.1007/3-540-45699-6_2</a></p></li>
+<li><p>Maurer, L., Downen, P., Ariola, Z. M., &amp; Peyton Jones, S. (2017). Compiling without continuations. ACM SIGPLAN Notices, 52(6), 482–494. <a class="reference external" href="https://doi.org/10.1145/3140587.3062380">https://doi.org/10.1145/3140587.3062380</a></p></li>
+<li><p>Downen, P. (2017). Sequent Calculus: A Logic and a Language for Computation and Duality (University of Oregon). Retrieved from <a class="reference external" href="https://ix.cs.uoregon.edu/~pdownen/publications/downen_phd.pdf">https://ix.cs.uoregon.edu/~pdownen/publications/downen_phd.pdf</a></p></li>
+<li><p>Downen, P., &amp; Ariola, Z. M. (2020). Compiling With Classical Connectives. Logical Methods in Computer Science, 16(3), 1–13. <a class="reference external" href="https://doi.org/10.23638/LMCS-16(3:13)2020">https://doi.org/10.23638/LMCS-16(3:13)2020</a></p></li>
+<li><p>Selinger, P. (2001). Control categories and duality: on the categorical semantics of the lambda-mu calculus. Mathematical Structures in Computer Science, 11(2), S096012950000311X. <a class="reference external" href="https://doi.org/10.1017/S096012950000311X">https://doi.org/10.1017/S096012950000311X</a></p></li>
 </ul>
-</div>
-<div class="section" id="module">
+</section>
+<section id="module">
 <h3>Module<a class="headerlink" href="#module" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Rossberg, A., Russo, C., &amp; Dreyer, D. (2014). F-ing modules. Journal of Functional Programming, 24(5), 529–607. <a class="reference external" href="https://doi.org/10.1017/S0956796814000264">https://doi.org/10.1017/S0956796814000264</a></li>
-<li>Dreyer, D. (2005). Understanding and Evolving the ML Module System (Carnegie Mellon University). Retrieved from <a class="reference external" href="https://people.mpi-sws.org/~dreyer/thesis/main.pdf">https://people.mpi-sws.org/~dreyer/thesis/main.pdf</a></li>
-<li>Leroy, X. (2000). A modular module system. Journal of Functional Programming, 10(3), 269–303. <a class="reference external" href="https://doi.org/10.1017/S0956796800003683">https://doi.org/10.1017/S0956796800003683</a></li>
+<li><p>Rossberg, A., Russo, C., &amp; Dreyer, D. (2014). F-ing modules. Journal of Functional Programming, 24(5), 529–607. <a class="reference external" href="https://doi.org/10.1017/S0956796814000264">https://doi.org/10.1017/S0956796814000264</a></p></li>
+<li><p>Dreyer, D. (2005). Understanding and Evolving the ML Module System (Carnegie Mellon University). Retrieved from <a class="reference external" href="https://people.mpi-sws.org/~dreyer/thesis/main.pdf">https://people.mpi-sws.org/~dreyer/thesis/main.pdf</a></p></li>
+<li><p>Leroy, X. (2000). A modular module system. Journal of Functional Programming, 10(3), 269–303. <a class="reference external" href="https://doi.org/10.1017/S0956796800003683">https://doi.org/10.1017/S0956796800003683</a></p></li>
 </ul>
-</div>
-<div class="section" id="type-checking">
+</section>
+<section id="type-checking">
 <h3>Type Checking<a class="headerlink" href="#type-checking" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Vytiniotis, D., Peyton Jones, S., Schrijvers, T., &amp; Sulzmann, M. (2011). OutsideIn(X): Modular type inference with local assumptions. Journal of Functional Programming, 21(4–5), 333–412. <a class="reference external" href="https://doi.org/10.1017/S0956796811000098">https://doi.org/10.1017/S0956796811000098</a></li>
-<li>Eekelen, V., &amp; Leer, V. (2004). The Essence of ML Type Inference. In Advanced Topics in Types and Programming Languages. <a class="reference external" href="https://doi.org/10.7551/mitpress/1104.003.0016">https://doi.org/10.7551/mitpress/1104.003.0016</a></li>
-<li>Milner, R. (1978). A theory of type polymorphism in programming. Journal of Computer and System Sciences, 17(3), 348–375. <a class="reference external" href="https://doi.org/10.1016/0022-0000(78)90014-4">https://doi.org/10.1016/0022-0000(78)90014-4</a></li>
+<li><p>Vytiniotis, D., Peyton Jones, S., Schrijvers, T., &amp; Sulzmann, M. (2011). OutsideIn(X): Modular type inference with local assumptions. Journal of Functional Programming, 21(4–5), 333–412. <a class="reference external" href="https://doi.org/10.1017/S0956796811000098">https://doi.org/10.1017/S0956796811000098</a></p></li>
+<li><p>Eekelen, V., &amp; Leer, V. (2004). The Essence of ML Type Inference. In Advanced Topics in Types and Programming Languages. <a class="reference external" href="https://doi.org/10.7551/mitpress/1104.003.0016">https://doi.org/10.7551/mitpress/1104.003.0016</a></p></li>
+<li><p>Milner, R. (1978). A theory of type polymorphism in programming. Journal of Computer and System Sciences, 17(3), 348–375. <a class="reference external" href="https://doi.org/10.1016/0022-0000(78)90014-4">https://doi.org/10.1016/0022-0000(78)90014-4</a></p></li>
 </ul>
-</div>
-<div class="section" id="gabage-collection">
+</section>
+<section id="gabage-collection">
 <h3>Gabage Collection<a class="headerlink" href="#gabage-collection" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="i-o-management">
+</section>
+<section id="i-o-management">
 <h3>I/O Management<a class="headerlink" href="#i-o-management" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="code-generation">
+</section>
+<section id="code-generation">
 <h3>Code Generation<a class="headerlink" href="#code-generation" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="analysis-optimization">
+</section>
+<section id="analysis-optimization">
 <h3>Analysis / Optimization<a class="headerlink" href="#analysis-optimization" title="Permalink to this headline">¶</a></h3>
-</div>
-</div>
-<div class="section" id="other-language-references">
+</section>
+</section>
+<section id="other-language-references">
 <h2>Other Language References<a class="headerlink" href="#other-language-references" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://www.haskell.org/onlinereport/haskell2010/">Haskell 2010 Language Report</a></li>
-<li><a class="reference external" href="https://doc.rust-lang.org/reference">Rust Language Reference</a></li>
-<li><a class="reference external" href="https://github.com/purescript/documentation/blob/master/language">PureScript Language Reference</a></li>
-<li><a class="reference external" href="https://smlfamily.github.io/sml97-defn.pdf">The Definition of Standard ML (Revised)</a></li>
-<li><a class="reference external" href="https://ocaml.org/releases/4.11/htmlman/index.html">The OCaml system release 4.11 Documentation and user’s manual</a></li>
-<li><a class="reference external" href="https://idris.readthedocs.io/en/latest/reference/index.html">Idris Language Reference</a></li>
-<li><a class="reference external" href="https://scala-lang.org/files/archive/spec/2.13/">Scala Language Specification</a></li>
+<li><p><a class="reference external" href="https://www.haskell.org/onlinereport/haskell2010/">Haskell 2010 Language Report</a></p></li>
+<li><p><a class="reference external" href="https://doc.rust-lang.org/reference">Rust Language Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/purescript/documentation/blob/master/language">PureScript Language Reference</a></p></li>
+<li><p><a class="reference external" href="https://smlfamily.github.io/sml97-defn.pdf">The Definition of Standard ML (Revised)</a></p></li>
+<li><p><a class="reference external" href="https://ocaml.org/releases/4.11/htmlman/index.html">The OCaml system release 4.11 Documentation and user’s manual</a></p></li>
+<li><p><a class="reference external" href="https://idris.readthedocs.io/en/latest/reference/index.html">Idris Language Reference</a></p></li>
+<li><p><a class="reference external" href="https://scala-lang.org/files/archive/spec/2.13/">Scala Language Specification</a></p></li>
 </ul>
-</div>
-<div class="section" id="reading-lists">
+</section>
+<section id="reading-lists">
 <h2>Reading Lists<a class="headerlink" href="#reading-lists" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://gitlab.haskell.org/ghc/ghc/-/wikis/reading-list">The GHC reading list</a></li>
-<li><a class="reference external" href="https://ocaml.org/docs/papers.html">OCaml - Papers and Talks</a></li>
+<li><p><a class="reference external" href="https://gitlab.haskell.org/ghc/ghc/-/wikis/reading-list">The GHC reading list</a></p></li>
+<li><p><a class="reference external" href="https://ocaml.org/docs/papers.html">OCaml - Papers and Talks</a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -128,7 +127,7 @@
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="syntax.html">Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="typing_semantics.html">Typing Semantics</a></li>
@@ -152,17 +151,15 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -179,7 +176,7 @@
       &copy;2020, Mizunashi Mana.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

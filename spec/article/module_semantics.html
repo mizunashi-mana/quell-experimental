@@ -1,24 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Module Semantics &#8212; quell-spec  documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/katex-math.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script>
-    <script type="text/javascript" src="../_static/katex_autorenderer.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"></script>
+    <script src="../_static/katex_autorenderer.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Evaluate Semantics" href="evaluate_semantics.html" />
@@ -39,9 +38,9 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="module-semantics">
+  <section id="module-semantics">
 <h1>Module Semantics<a class="headerlink" href="#module-semantics" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="signatures">
+<section id="signatures">
 <h2>Signatures<a class="headerlink" href="#signatures" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">signature</span> <span class="n">EqDict</span> <span class="n">a</span> <span class="n">where</span>
   <span class="p">(</span><span class="o">==</span><span class="p">):</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">Bool</span>
@@ -54,8 +53,8 @@
   <span class="n">length</span><span class="p">:</span> <span class="n">Container</span> <span class="o">-&gt;</span> <span class="n">Int</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="modules-and-functors">
+</section>
+<section id="modules-and-functors">
 <h2>Modules and Functors<a class="headerlink" href="#modules-and-functors" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BoolList</span><span class="p">:</span> <span class="n">MonoListLike</span>
 <span class="n">module</span> <span class="n">BoolList</span> <span class="n">where</span>
@@ -89,8 +88,8 @@
       <span class="n">_</span><span class="p">,</span>           <span class="n">_</span>           <span class="o">-&gt;</span> <span class="kc">False</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="traits">
+</section>
+<section id="traits">
 <h2>Traits<a class="headerlink" href="#traits" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{-!
 | ::
@@ -109,11 +108,11 @@ impl default: Eq (List a) &lt;= Eq a where
     _,           _           -&gt; False
 </pre></div>
 </div>
-</div>
-<div class="section" id="automatic-derive">
+</section>
+<section id="automatic-derive">
 <h2>Automatic Derive<a class="headerlink" href="#automatic-derive" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -139,7 +138,7 @@ impl default: Eq (List a) &lt;= Eq a where
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="syntax.html">Syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="typing_semantics.html">Typing Semantics</a></li>
@@ -165,17 +164,15 @@ impl default: Eq (List a) &lt;= Eq a where
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
 
 
 
@@ -192,7 +189,7 @@ impl default: Eq (List a) &lt;= Eq a where
       &copy;2020, Mizunashi Mana.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
