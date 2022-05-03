@@ -396,7 +396,7 @@
 <strong id="grammar-token-alg_data_type_items"><span id="grammar-token-alg-data-type-items"></span>alg_data_type_items</strong> ::=  &quot;|&quot;? (impltype &quot;|&quot;)* impltype?
 </pre>
 <pre>
-<strong id="grammar-token-val_decl"><span id="grammar-token-val-decl"></span>val_decl            </strong> ::=  declvarexpr (&quot;:&quot; type)? &quot;=&quot; expr (&quot;#where&quot; val_decl_where_body)?
+<strong id="grammar-token-val_decl"><span id="grammar-token-val-decl"></span>val_decl            </strong> ::=  declvarexpr &quot;=&quot; expr (&quot;#where&quot; val_decl_where_body)?
 <strong id="grammar-token-val_bind"><span id="grammar-token-val-bind"></span>val_bind            </strong> ::=  pat &quot;=&quot; expr (&quot;#where&quot; val_decl_where_body)?
 <strong id="grammar-token-val_decl_where_body"><span id="grammar-token-val-decl-where-body"></span>val_decl_where_body </strong> ::=  &quot;{{&quot; val_decl_where_items &quot;}}&quot;
                           &quot;{&quot; val_decl_where_items &quot;}&quot;
@@ -405,12 +405,12 @@
 <strong id="grammar-token-val_decl_where_item"><span id="grammar-token-val-decl-where-item"></span>val_decl_where_item </strong> ::=  let_bind_item
 </pre>
 <pre>
-<strong id="grammar-token-decltype">decltype   </strong> ::=  simple_bind_var declconop simple_bind_var
-                 declcon bind_var*
+<strong id="grammar-token-decltype">decltype   </strong> ::=  actual_bind_var declconop actual_bind_var (&quot;:&quot; type)?
+                 declcon bind_var* (&quot;:&quot; type)?
 <strong id="grammar-token-impltype">impltype   </strong> ::=  type_qualified conop_qualified type_qualified
                  con_qualified type_qualified*
-<strong id="grammar-token-declvarexpr">declvarexpr</strong> ::=  simple_bind_var declop simple_bind_var
-                 declvar bind_var*
+<strong id="grammar-token-declvarexpr">declvarexpr</strong> ::=  simple_bind_var declop simple_bind_var (&quot;:&quot; type)?
+                 declvar bind_var* (&quot;:&quot; type)?
 </pre>
 <pre>
 <strong id="grammar-token-type">type                  </strong> ::=  (type_apps type_op)* type_apps
@@ -566,9 +566,10 @@
 <pre>
 <strong id="grammar-token-bind_var"><span id="grammar-token-bind-var"></span>bind_var            </strong> ::=  &quot;#&#64;&quot; block_bind_var
                           &quot;&#64;&quot; simple_bind_var
-                          &quot;##&quot; block_bind_var
+                          actual_bind_var
+<strong id="grammar-token-actual_bind_var"><span id="grammar-token-actual-bind-var"></span>actual_bind_var     </strong> ::=  &quot;##&quot; block_bind_var
                           simple_bind_var
-<strong id="grammar-token-simple_bind_var"><span id="grammar-token-simple-bind-var"></span>simple_bind_var     </strong> ::=  &quot;(&quot; var_id_ext &quot;:&quot; type &quot;)&quot;
+<strong id="grammar-token-simple_bind_var"><span id="grammar-token-simple-bind-var"></span>simple_bind_var     </strong> ::=  &quot;(&quot; block_bin_var_item &quot;)&quot;
                           var_id_ext
 <strong id="grammar-token-block_bind_var"><span id="grammar-token-block-bind-var"></span>block_bind_var      </strong> ::=  &quot;{{&quot; block_bind_var_items &quot;}}&quot;
                           &quot;{&quot; block_bind_var_items &quot;}&quot;
