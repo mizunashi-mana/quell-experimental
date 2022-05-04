@@ -77,6 +77,7 @@
 <pre>
 <strong id="grammar-token-lexical_program"><span id="grammar-token-lexical-program"></span>lexical_program</strong> ::=  (lexeme / whitespace)* EOS?
 <strong id="grammar-token-lexeme">lexeme         </strong> ::=  literal
+                     interp_string_part
                      special
                      brace
                      reserved_id
@@ -159,7 +160,6 @@
              string
              bytechar
              char
-             interp_string_part
 </pre>
 <pre>
 <strong id="grammar-token-rational">rational</strong> ::=  sign? decimal &quot;.&quot; decimal exponent?
@@ -409,17 +409,16 @@
                  declcon bind_var* (&quot;:&quot; type)?
 <strong id="grammar-token-impltype">impltype   </strong> ::=  type_qualified conop_qualified type_qualified
                  con_qualified type_qualified*
-<strong id="grammar-token-declvarexpr">declvarexpr</strong> ::=  simple_bind_var declop simple_bind_var (&quot;:&quot; type)?
+<strong id="grammar-token-declvarexpr">declvarexpr</strong> ::=  actual_bind_var declop actual_bind_var (&quot;:&quot; type)?
                  declvar bind_var* (&quot;:&quot; type)?
 </pre>
 <pre>
 <strong id="grammar-token-type">type                  </strong> ::=  (type_apps type_op)* type_apps
 <strong id="grammar-token-type_op"><span id="grammar-token-type-op"></span>type_op               </strong> ::=  &quot;`&quot; type_op_block &quot;`&quot;
-                            con_sym_ext
-                            var_sym_ext
-<strong id="grammar-token-type_op_block"><span id="grammar-token-type-op-block"></span>type_op_block         </strong> ::=  con_sym_ext
-                            var_sym_ext
+                            type_op_sym_qualified
+<strong id="grammar-token-type_op_block"><span id="grammar-token-type-op-block"></span>type_op_block         </strong> ::=  type_op_sym_qualified
                             type_apps
+<strong id="grammar-token-type_op_sym_qualified"><span id="grammar-token-type-op-sym-qualified"></span>type_op_sym_qualified </strong> ::=  sym
 <strong id="grammar-token-type_apps"><span id="grammar-token-type-apps"></span>type_apps             </strong> ::=  type_qualified type_app*
 <strong id="grammar-token-type_app"><span id="grammar-token-type-app"></span>type_app              </strong> ::=  &quot;&#64;&quot; type_qualified
                             &quot;#&#64;&quot; type_block_body
@@ -455,11 +454,10 @@
                             expr_infix
 <strong id="grammar-token-expr_infix"><span id="grammar-token-expr-infix"></span>expr_infix            </strong> ::=  (expr_apps expr_op)* expr_apps
 <strong id="grammar-token-expr_op"><span id="grammar-token-expr-op"></span>expr_op               </strong> ::=  &quot;`&quot; expr_op_block &quot;`&quot;
-                            con_sym_ext
-                            var_sym_ext
-<strong id="grammar-token-expr_op_block"><span id="grammar-token-expr-op-block"></span>expr_op_block         </strong> ::=  con_sym_ext
-                            var_sym_ext
+                            expr_op_sym_qualified
+<strong id="grammar-token-expr_op_block"><span id="grammar-token-expr-op-block"></span>expr_op_block         </strong> ::=  expr_op_sym_qualified
                             expr_apps
+<strong id="grammar-token-expr_op_sym_qualified"><span id="grammar-token-expr-op-sym-qualified"></span>expr_op_sym_qualified </strong> ::=  sym
 <strong id="grammar-token-expr_apps"><span id="grammar-token-expr-apps"></span>expr_apps             </strong> ::=  expr_qualified expr_app*
 <strong id="grammar-token-expr_app"><span id="grammar-token-expr-app"></span>expr_app              </strong> ::=  &quot;&#64;&quot; type_qualified
                             &quot;#&#64;&quot; type_block_body
@@ -469,7 +467,7 @@
                             &quot;#case&quot; case_alt_body
                             &quot;#letrec&quot; let_binds &quot;#in&quot; expr
                             &quot;#let&quot; let_binds &quot;#in&quot; expr
-                            &quot;#match&quot; &quot;,&quot;? (expr &quot;,&quot;)* expr? &quot;#with&quot; case_alt_body
+                            &quot;#match&quot; expr_match_items &quot;#with&quot; case_alt_body
                             &quot;#do&quot; do_body
                             &quot;##&quot; expr_block_body
                             expr_atomic
@@ -488,6 +486,7 @@
 <strong id="grammar-token-expr_block_item"><span id="grammar-token-expr-block-item"></span>expr_block_item       </strong> ::=  lsemis? expr lsemis?
 <strong id="grammar-token-expr_interp_string"><span id="grammar-token-expr-interp-string"></span>expr_interp_string    </strong> ::=  interp_string_without_interp
                             interp_string_start expr (interp_string_cont expr)* interp_string_end
+<strong id="grammar-token-expr_match_items"><span id="grammar-token-expr-match-items"></span>expr_match_items      </strong> ::=  &quot;,&quot;? (expr &quot;,&quot;)* expr?
 <strong id="grammar-token-expr_tuple_items"><span id="grammar-token-expr-tuple-items"></span>expr_tuple_items      </strong> ::=  &quot;,&quot;? (expr &quot;,&quot;)+ expr &quot;,&quot;?
 <strong id="grammar-token-expr_array_items"><span id="grammar-token-expr-array-items"></span>expr_array_items      </strong> ::=  &quot;,&quot;? (expr &quot;,&quot;)* expr?
 <strong id="grammar-token-expr_simplrecord_items"><span id="grammar-token-expr-simplrecord-items"></span>expr_simplrecord_items</strong> ::=  &quot;,&quot;? (expr_simplrecord_item &quot;,&quot;)* expr_simplrecord_item?
@@ -499,9 +498,10 @@
 <strong id="grammar-token-pat_unit"><span id="grammar-token-pat-unit"></span>pat_unit             </strong> ::=  &quot;|&quot;? (pat_infix &quot;|&quot;)* pat_infix &quot;|&quot;?
 <strong id="grammar-token-pat_infix"><span id="grammar-token-pat-infix"></span>pat_infix            </strong> ::=  (pat_apps pat_op)* pat_apps
 <strong id="grammar-token-pat_op"><span id="grammar-token-pat-op"></span>pat_op               </strong> ::=  &quot;`&quot; pat_op_block &quot;`&quot;
-                           con_sym_ext
-<strong id="grammar-token-pat_op_block"><span id="grammar-token-pat-op-block"></span>pat_op_block         </strong> ::=  con_sym_ext
-                           pat_apps
+                           pat_op_sym_qualified
+<strong id="grammar-token-pat_op_block"><span id="grammar-token-pat-op-block"></span>pat_op_block         </strong> ::=  pat_op_sym_qualified
+                           con_qualified pat_app*
+<strong id="grammar-token-pat_op_sym_qualified"><span id="grammar-token-pat-op-sym-qualified"></span>pat_op_sym_qualified </strong> ::=  con_sym_ext
 <strong id="grammar-token-pat_apps"><span id="grammar-token-pat-apps"></span>pat_apps             </strong> ::=  con_qualified pat_app*
                            pat_qualified pat_univ_app*
 <strong id="grammar-token-pat_univ_app"><span id="grammar-token-pat-univ-app"></span>pat_univ_app         </strong> ::=  &quot;&#64;&quot; type_qualified
@@ -576,18 +576,18 @@
                           '{' block_bind_var_items '}'
 <strong id="grammar-token-block_bind_var_items"><span id="grammar-token-block-bind-var-items"></span>block_bind_var_items</strong> ::=  lsemis? block_bind_var_item lsemis?
 <strong id="grammar-token-block_bind_var_item"><span id="grammar-token-block-bind-var-item"></span>block_bind_var_item </strong> ::=  var_id_ext (&quot;:&quot; type)?
+<strong id="grammar-token-sym">sym                 </strong> ::=  var_sym_ext
+                          con_sym_ext
 <strong id="grammar-token-con_qualified"><span id="grammar-token-con-qualified"></span>con_qualified       </strong> ::=  con
 <strong id="grammar-token-conop_qualified"><span id="grammar-token-conop-qualified"></span>conop_qualified     </strong> ::=  conop
 <strong id="grammar-token-con">con                 </strong> ::=  &quot;(&quot; con_sym_ext &quot;)&quot;
+                          &quot;(&quot; con_id_ext &quot;)&quot;
                           con_id_ext
-<strong id="grammar-token-conop">conop               </strong> ::=  con_sym_ext
-                          &quot;`&quot; con_sym_ext &quot;`&quot;
+<strong id="grammar-token-conop">conop               </strong> ::=  &quot;`&quot; con_sym_ext &quot;`&quot;
                           &quot;`&quot; con_id_ext &quot;`&quot;
+                          con_sym_ext
 <strong id="grammar-token-var">var                 </strong> ::=  &quot;(&quot; var_sym_ext &quot;)&quot;
                           var_id_ext
-<strong id="grammar-token-op">op                  </strong> ::=  &quot;`&quot; var_sym_ext &quot;`&quot;
-                          &quot;`&quot; var_id_ext &quot;`&quot;
-                          var_sym_ext
 <strong id="grammar-token-con_id_ext"><span id="grammar-token-con-id-ext"></span>con_id_ext          </strong> ::=  &quot;(&quot; &quot;)&quot;
                           con_id
 <strong id="grammar-token-con_sym_ext"><span id="grammar-token-con-sym-ext"></span>con_sym_ext         </strong> ::=  &quot;#-&gt;&quot;
@@ -599,11 +599,13 @@
 </pre>
 <pre>
 <strong id="grammar-token-declcon">declcon  </strong> ::=  &quot;(&quot; con_sym &quot;)&quot;
+               &quot;(&quot; con_id &quot;)&quot;
                con_id
 <strong id="grammar-token-declconop">declconop</strong> ::=  &quot;`&quot; con_sym &quot;`&quot;
                &quot;`&quot; con_id &quot;`&quot;
                con_sym
 <strong id="grammar-token-declvar">declvar  </strong> ::=  &quot;(&quot; var_sym &quot;)&quot;
+               &quot;(&quot; var_id &quot;)&quot;
                var_id
 <strong id="grammar-token-declop">declop   </strong> ::=  &quot;`&quot; var_sym &quot;`&quot;
                &quot;`&quot; var_id &quot;`&quot;
