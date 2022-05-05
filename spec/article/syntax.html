@@ -127,7 +127,6 @@
 <strong id="grammar-token-reserved_sym"><span id="grammar-token-reserved-sym"></span>reserved_sym     </strong> ::=  reserved_sym_unit ! sym_char
 <strong id="grammar-token-reserved_sym_unit"><span id="grammar-token-reserved-sym-unit"></span>reserved_sym_unit</strong> ::=  &quot;_&quot;
                        &quot;!&quot;
-                       &quot;&lt;#&quot; / &quot;⧏&quot;
                        &quot;=&quot;
                        &quot;?&quot;
                        &quot;&#64;&quot;
@@ -146,6 +145,7 @@
                        &quot;##&quot; / &quot;﹟&quot;
                        &quot;#&#64;&quot; / &quot;⧥&quot;
                        &quot;#&gt;&quot; / &quot;⧐&quot;
+                       &quot;#&lt;&quot; / &quot;⧏&quot;
                        &quot;#=&gt;&quot;
                        &quot;#-&gt;&quot;
                        &quot;..&quot; / &quot;…&quot;
@@ -340,7 +340,7 @@
 <h2>Aliases<a class="headerlink" href="#aliases" title="Permalink to this headline">¶</a></h2>
 <pre>
 <strong id="grammar-token-.."><span id="grammar-token"></span>".."</strong> ::=  &quot;..&quot; / &quot;…&quot;
-<strong id="grammar-token--1">"<#"</strong> ::=  &quot;&lt;#&quot; / &quot;⧏&quot;
+<strong id="grammar-token--1">"#<"</strong> ::=  &quot;#&lt;&quot; / &quot;⧏&quot;
 <strong id="grammar-token--2">"#>"</strong> ::=  &quot;#&gt;&quot; / &quot;⧐&quot;
 <strong id="grammar-token--3">"^" </strong> ::=  &quot;^&quot; / &quot;∀&quot;
 <strong id="grammar-token--4">"\\"</strong> ::=  &quot;\\&quot; / &quot;λ&quot;
@@ -559,7 +559,7 @@
                    '{' do_stmt_items '}'
 <strong id="grammar-token-do_stmt_items"><span id="grammar-token-do-stmt-items"></span>do_stmt_items</strong> ::=  lsemis? (do_stmt_item lsemis)* do_yield_item lsemis?
 <strong id="grammar-token-do_stmt_item"><span id="grammar-token-do-stmt-item"></span>do_stmt_item </strong> ::=  &quot;#letrec&quot; let_binds
-                   pat &quot;&lt;#&quot; expr (&quot;#where&quot; val_decl_where_body)?
+                   pat &quot;#&lt;&quot; expr (&quot;#where&quot; val_decl_where_body)?
                    pat &quot;=&quot; expr (&quot;#where&quot; val_decl_where_body)?
 <strong id="grammar-token-do_yield_item"><span id="grammar-token-do-yield-item"></span>do_yield_item</strong> ::=  &quot;#yield&quot; expr
 </pre>
