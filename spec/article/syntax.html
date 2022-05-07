@@ -124,9 +124,9 @@
                        &quot;#yield&quot;
                        &quot;#Default&quot;
                        &quot;#Self&quot;
+                       '_'
 <strong id="grammar-token-reserved_sym"><span id="grammar-token-reserved-sym"></span>reserved_sym     </strong> ::=  reserved_sym_unit ! sym_char
-<strong id="grammar-token-reserved_sym_unit"><span id="grammar-token-reserved-sym-unit"></span>reserved_sym_unit</strong> ::=  &quot;_&quot;
-                       &quot;!&quot;
+<strong id="grammar-token-reserved_sym_unit"><span id="grammar-token-reserved-sym-unit"></span>reserved_sym_unit</strong> ::=  &quot;!&quot;
                        &quot;=&quot;
                        &quot;?&quot;
                        &quot;&#64;&quot;
@@ -135,6 +135,12 @@
                        &quot;|&quot;
                        &quot;~&quot;
                        &quot;:&quot;
+                       &quot;##&quot; / &quot;﹟&quot;
+                       &quot;#&#64;&quot; / &quot;‡&quot;
+                       &quot;#&gt;&quot; / &quot;⧐&quot;
+                       &quot;#&lt;&quot; / &quot;⧏&quot;
+                       &quot;#=&gt;&quot;
+                       &quot;#-&gt;&quot;
 <strong id="grammar-token-special">special          </strong> ::=  &quot;(&quot;
                        &quot;)&quot;
                        &quot;,&quot;
@@ -142,12 +148,6 @@
                        &quot;]&quot;
                        &quot;`&quot;
                        &quot;;&quot;
-                       &quot;##&quot; / &quot;﹟&quot;
-                       &quot;#&#64;&quot; / &quot;⧥&quot;
-                       &quot;#&gt;&quot; / &quot;⧐&quot;
-                       &quot;#&lt;&quot; / &quot;⧏&quot;
-                       &quot;#=&gt;&quot;
-                       &quot;#-&gt;&quot;
                        &quot;..&quot; / &quot;…&quot;
                        &quot;.&quot;
 <strong id="grammar-token-brace">brace            </strong> ::=  &quot;{{&quot; / &quot;}}&quot; / &quot;❴&quot; / &quot;❵&quot;
@@ -296,10 +296,11 @@
 <p>These nonterminals must be disjoint:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">whitespace</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">var_id</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">var_sym</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">!</span> <span class="pre">('_'</span> <span class="pre">!</span> <span class="pre">sym_char)</span> <span class="pre">var_id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">!</span> <span class="pre">reserved_sym</span> <span class="pre">var_sym</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">con_id</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">reserved_sym</span> <span class="pre">/</span> <span class="pre">con_sym</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">!</span> <span class="pre">reserved_sym</span> <span class="pre">con_sym</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reserved_sym</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">reserved_id</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">special</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">brace</span></code></p></li>
@@ -325,8 +326,8 @@
 <p>These expressions must be empty:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">(!</span> <span class="pre">ANY+)</span> <span class="pre">(lexeme</span> <span class="pre">/</span> <span class="pre">whitespace)</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">(!</span> <span class="pre">('#'</span> <span class="pre">(small</span> <span class="pre">/</span> <span class="pre">large)</span> <span class="pre">(small</span> <span class="pre">/</span> <span class="pre">large</span> <span class="pre">/</span> <span class="pre">digit</span> <span class="pre">/</span> <span class="pre">other)*))</span> <span class="pre">reserved_id</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">(!</span> <span class="pre">('_'</span> <span class="pre">/</span> <span class="pre">symbol</span> <span class="pre">(symbol</span> <span class="pre">/</span> <span class="pre">other)*))</span> <span class="pre">reserved_sym</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(!</span> <span class="pre">('_'</span> <span class="pre">/</span> <span class="pre">'#'</span> <span class="pre">id_char*))</span> <span class="pre">reserved_id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(!</span> <span class="pre">(('#'</span> <span class="pre">/</span> <span class="pre">symbol)</span> <span class="pre">sym_char*))</span> <span class="pre">reserved_sym</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">(!</span> <span class="pre">other_special*)</span> <span class="pre">brace</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">(!</span> <span class="pre">(&quot;+&quot;</span> <span class="pre">/</span> <span class="pre">&quot;-&quot;</span> <span class="pre">/</span> <span class="pre">digit</span> <span class="pre">/</span> <span class="pre">&quot;'&quot;</span> <span class="pre">/</span> <span class="pre">other_special))</span> <span class="pre">literal</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">(!</span> <span class="pre">comment_open)</span> <span class="pre">(multiline_comment</span> <span class="pre">/</span> <span class="pre">doc_comment</span> <span class="pre">/</span> <span class="pre">pragma_comment</span> <span class="pre">/</span> <span class="pre">nested_comment)</span></code></p></li>
@@ -569,7 +570,7 @@
                           actual_bind_var
 <strong id="grammar-token-actual_bind_var"><span id="grammar-token-actual-bind-var"></span>actual_bind_var     </strong> ::=  &quot;##&quot; block_bind_var
                           simple_bind_var
-<strong id="grammar-token-simple_bind_var"><span id="grammar-token-simple-bind-var"></span>simple_bind_var     </strong> ::=  &quot;(&quot; block_bin_var_item &quot;)&quot;
+<strong id="grammar-token-simple_bind_var"><span id="grammar-token-simple-bind-var"></span>simple_bind_var     </strong> ::=  &quot;(&quot; block_bind_var_item &quot;)&quot;
                           var_id_ext
 <strong id="grammar-token-block_bind_var"><span id="grammar-token-block-bind-var"></span>block_bind_var      </strong> ::=  &quot;{{&quot; block_bind_var_items &quot;}}&quot;
                           &quot;{&quot; block_bind_var_items &quot;}&quot;
