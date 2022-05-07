@@ -505,25 +505,25 @@
 <strong id="grammar-token-pat_op_sym_qualified"><span id="grammar-token-pat-op-sym-qualified"></span>pat_op_sym_qualified </strong> ::=  con_sym_ext
 <strong id="grammar-token-pat_apps"><span id="grammar-token-pat-apps"></span>pat_apps             </strong> ::=  con_qualified pat_app*
                            pat_qualified pat_univ_app*
-<strong id="grammar-token-pat_univ_app"><span id="grammar-token-pat-univ-app"></span>pat_univ_app         </strong> ::=  &quot;&#64;&quot; type_qualified
-                           &quot;#&#64;&quot; type_block_body
 <strong id="grammar-token-pat_app"><span id="grammar-token-pat-app"></span>pat_app              </strong> ::=  pat_univ_app
                            pat_qualified
-                           con_qualified
+<strong id="grammar-token-pat_univ_app"><span id="grammar-token-pat-univ-app"></span>pat_univ_app         </strong> ::=  &quot;&#64;&quot; type_qualified
+                           &quot;#&#64;&quot; type_block_body
 <strong id="grammar-token-pat_qualified"><span id="grammar-token-pat-qualified"></span>pat_qualified        </strong> ::=  pat_block
 <strong id="grammar-token-pat_block"><span id="grammar-token-pat-block"></span>pat_block            </strong> ::=  &quot;##&quot; pat_block_body
                            pat_atomic
 <strong id="grammar-token-pat_atomic"><span id="grammar-token-pat-atomic"></span>pat_atomic           </strong> ::=  &quot;(&quot; pat &quot;)&quot;
                            pat_literal
+                           con
                            var
 <strong id="grammar-token-pat_literal"><span id="grammar-token-pat-literal"></span>pat_literal          </strong> ::=  literal
                            &quot;(&quot; pat_tuple_items &quot;)&quot;
                            &quot;[&quot; pat_array_items &quot;]&quot;
                            &quot;{&quot; pat_simplrecord_items &quot;}&quot;
-<strong id="grammar-token-pat_block_body"><span id="grammar-token-pat-block-body"></span>pat_block_body       </strong> ::=  &quot;{&quot; pat_block_item &quot;}&quot;
-                           &quot;{{&quot; pat_block_item &quot;}}&quot;
-                           '{' pat_block_item '}'
-<strong id="grammar-token-pat_block_item"><span id="grammar-token-pat-block-item"></span>pat_block_item       </strong> ::=  lsemis? pat lsemis?
+<strong id="grammar-token-pat_block_body"><span id="grammar-token-pat-block-body"></span>pat_block_body       </strong> ::=  &quot;{&quot; pat_block_items &quot;}&quot;
+                           &quot;{{&quot; pat_block_items &quot;}}&quot;
+                           '{' pat_block_items '}'
+<strong id="grammar-token-pat_block_items"><span id="grammar-token-pat-block-items"></span>pat_block_items      </strong> ::=  lsemis? pat lsemis?
 <strong id="grammar-token-pat_tuple_items"><span id="grammar-token-pat-tuple-items"></span>pat_tuple_items      </strong> ::=  &quot;,&quot;? (pat &quot;,&quot;)+ pat &quot;,&quot;?
 <strong id="grammar-token-pat_array_items"><span id="grammar-token-pat-array-items"></span>pat_array_items      </strong> ::=  &quot;,&quot;? (pat &quot;,&quot;)* pat?
 <strong id="grammar-token-pat_simplrecord_items"><span id="grammar-token-pat-simplrecord-items"></span>pat_simplrecord_items</strong> ::=  &quot;,&quot;? (pat_simplrecord_item &quot;,&quot;)* pat_simplrecord_item?
